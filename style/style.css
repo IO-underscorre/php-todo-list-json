@@ -4,6 +4,15 @@
     padding: 0;
 }
 
+:root {
+    --clr-primary: #000539;
+    --clr-secondary: #3c0074;
+    --clr-neutral-lt: #f0f0f0;
+    --clr-neutral-dk: #232323;
+
+    font-size: 16px;
+}
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -17,4 +26,74 @@ ol {
 a {
     text-decoration: inherit;
     color: inherit;
+}
+
+.page-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: radial-gradient(var(--clr-secondary), var(--clr-primary)), var(--clr-primary);
+}
+
+.page-wrapper>div {
+    overflow: auto;
+}
+
+.content {
+    width: 95%;
+    max-width: 800px;
+    margin: 5vw auto;
+}
+
+header {
+    color: var(--clr-neutral-lt);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+main {
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--clr-neutral-lt);
+    color: var(--clr-neutral-dk);
+}
+
+.event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.event:last-child {
+    margin-bottom: 0;
+}
+
+.event-name {
+    font-size: 1.25em;
+}
+
+.event-options {
+    display: flex;
+    justify-content: end;
+    gap: .5em;
+}
+
+.event-options button {
+    cursor: pointer;
+    height: 2em;
+    width: 2em;
+    border-radius: .5em;
+    border: 1px solid var(--clr-neutral-dk);
+}
+
+.event-options button:hover {
+    color: var(--clr-neutral-lt);
+    background-color: var(--clr-neutral-dk);
 }
