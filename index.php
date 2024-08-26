@@ -51,6 +51,16 @@
                             </menu>
                         </li>
                     </ul>
+
+                    <form action="" class="new-event-form event">
+                        <input type="text" placeholder="New task..." class="event-name">
+
+                        <div class="event-options">
+                            <button type="submit" title="Add new task">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </form>
                 </main>
             </div>
         </div>

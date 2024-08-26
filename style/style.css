@@ -9,6 +9,7 @@
     --clr-secondary: #3c0074;
     --clr-neutral-lt: #f0f0f0;
     --clr-neutral-dk: #232323;
+    --clr-neutral-dk-50: #23232380;
 
     font-size: 16px;
 }
@@ -68,15 +69,42 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1em;
     margin-bottom: 1rem;
 }
 
-.event:last-child {
+form.event {
     margin-bottom: 0;
 }
 
 .event-name {
     font-size: 1.25em;
+    overflow-wrap: anywhere;
+}
+
+input.event-name {
+    appearance: none;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: var(--clr-neutral-dk-50);
+    outline: none;
+    background-color: #00000000;
+    flex-grow: 1;
+}
+
+input.event-name:hover,
+input.event-name:focus {
+    border-color: var(--clr-neutral-dk);
+}
+
+input.event-name::placeholder {
+    color: var(--clr-neutral-dk-50);
+    opacity: 1;
+}
+
+input.event-name:hover::placeholder,
+input.event-name:focus::placeholder {
+    color: var(--clr-neutral-dk);
 }
 
 .event-options {
