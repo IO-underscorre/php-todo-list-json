@@ -7,7 +7,8 @@ createApp({
 
             todoList: [],
 
-            taskInputed: '',
+            taskTitleInputed: '',
+            taskDescriptionInputed: '',
 
             hasInputError: false,
             hasServerError: false
@@ -26,10 +27,11 @@ createApp({
         },
 
         addNewTask() {
-            if (/[A-Za-zÀ-ÖØ-öø-ÿ0-9]{3,}/i.test(this.taskInputed)) {
+            if (/[A-Za-zÀ-ÖØ-öø-ÿ0-9]{3,}/i.test(this.taskTitleInputed)) {
                 const data = {
                     newTask: JSON.stringify({
-                        title: this.taskInputed.replace(/\s+/g, ' ').trim(),
+                        title: this.taskTitleInputed.replace(/\s+/g, ' ').trim(),
+                        description: this.taskDescriptionInputed.replace(/\s+/g, ' ').trim(),
                         isCompleted: false
                     })
                 };
@@ -39,8 +41,8 @@ createApp({
                 })
                     .then(callResponse => {
                         this.todoList = callResponse.data;
-                        console.log(callResponse.data);
-                        this.taskInputed = '';
+                        this.taskTitleInputed = '';
+                        this.taskDescriptionInputed = '';
                         this.hasServerError = false;
                     }).catch(error => {
                         this.hasServerError = true;

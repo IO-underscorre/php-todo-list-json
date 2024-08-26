@@ -73,8 +73,12 @@ main {
     margin-bottom: 1rem;
 }
 
-form.event {
-    margin-bottom: 0;
+.event.completed {
+    text-decoration: line-through;
+}
+
+form>.event {
+    margin-bottom: .5em;
 }
 
 .event-name {
@@ -82,7 +86,8 @@ form.event {
     overflow-wrap: anywhere;
 }
 
-input.event-name {
+.input-area {
+    font-size: 1.25em;
     appearance: none;
     border-width: 0 0 1px;
     border-style: solid;
@@ -92,18 +97,23 @@ input.event-name {
     flex-grow: 1;
 }
 
-input.event-name:hover,
-input.event-name:focus {
+textarea.input-area {
+    width: 100%;
+    font-size: 1em;
+}
+
+.input-area:hover,
+.input-area:focus {
     border-color: var(--clr-neutral-dk);
 }
 
-input.event-name::placeholder {
+.input-area::placeholder {
     color: var(--clr-neutral-dk-50);
     opacity: 1;
 }
 
-input.event-name:hover::placeholder,
-input.event-name:focus::placeholder {
+.input-area:hover::placeholder,
+.input-area:focus::placeholder {
     color: var(--clr-neutral-dk);
 }
 

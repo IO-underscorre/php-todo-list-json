@@ -26,7 +26,7 @@
 
                 <main>
                     <ul class="todo-list">
-                        <li class="event" v-for="(task, index) in todoList" :key="index">
+                        <li class="event" :class="{ completed: task.isCompleted }" v-for="(task, index) in todoList" :key="index">
                             <h2 class="event-name">
                                 {{ task.title }}
                             </h2>
@@ -57,14 +57,18 @@
                         </li>
                     </ul>
 
-                    <form action="" class="new-event-form event" @submit.prevent="addNewTask()">
-                        <input type="text" placeholder="New task..." class="event-name" v-model="taskInputed">
+                    <form action="" @submit.prevent="addNewTask()">
+                        <div class="event">
+                            <input type="text" placeholder="New task" class="input-area" v-model="taskTitleInputed" required>
 
-                        <div class="event-options">
-                            <button type="submit" title="Add new task">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
+                            <div class="event-options">
+                                <button type="submit" title="Add new task">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
+
+                        <textarea rows="3" placeholder="Optional description" class="input-area" v-model="taskDescriptionInputed"></textarea>
                     </form>
                 </main>
             </div>
