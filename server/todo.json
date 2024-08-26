@@ -1,0 +1,7 @@
+[
+    {
+        "title": "Fixare l'api",
+        "description": "Il cliente ci ha segnalato che il campo della descrizione non viene visualizzato a schermo",
+        "isCompleted": false
+    }
+]

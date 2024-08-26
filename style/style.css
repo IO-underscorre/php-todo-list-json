@@ -125,3 +125,8 @@ input.event-name:focus::placeholder {
     color: var(--clr-neutral-lt);
     background-color: var(--clr-neutral-dk);
 }
+
+.event-options button.disabled {
+    opacity: .5;
+    pointer-events: none;
+}

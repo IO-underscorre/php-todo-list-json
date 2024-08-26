@@ -9,10 +9,13 @@
 
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 </head>
 
 <body>
-    <div class="page-wrapper">
+    <div id="app" class="page-wrapper">
         <div>
             <div class="content">
                 <header>
@@ -23,28 +26,30 @@
 
                 <main>
                     <ul class="todo-list">
-                        <li class="event">
+                        <li class="event" v-for="(task, index) in todoList" :key="index">
                             <h2 class="event-name">
-                                testtesttesttest
+                                {{ task.title }}
                             </h2>
 
                             <menu class="event-options">
                                 <li>
-                                    <button>
+                                    <button title="Show task details">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </li>
 
                                 <li>
-                                    <button>
-                                        <i class="fa-solid fa-check"></i>
+                                    <button title="Uncheck task as completed" @click="editTask('toggle', index)" v-if="task.isCompleted">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
 
-                                        <!-- condizione per mettere altro testo -->
+                                    <button title="Check task as completed" @click="editTask('toggle', index)" v-else>
+                                        <i class="fa-solid fa-check"></i>
                                     </button>
                                 </li>
 
                                 <li>
-                                    <button>
+                                    <button title="Delete task" :class="{ disabled: !task.isCompleted }" @click="editTask('remove', index)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </li>
@@ -52,8 +57,8 @@
                         </li>
                     </ul>
 
-                    <form action="" class="new-event-form event">
-                        <input type="text" placeholder="New task..." class="event-name">
+                    <form action="" class="new-event-form event" @submit.prevent="addNewTask()">
+                        <input type="text" placeholder="New task..." class="event-name" v-model="taskInputed">
 
                         <div class="event-options">
                             <button type="submit" title="Add new task">
@@ -65,6 +70,8 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="scripts/main.js"></script>
 </body>
 
 </html>
