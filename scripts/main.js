@@ -7,6 +7,9 @@ createApp({
 
             todoList: [],
 
+            highlightedTaskIndex: 0,
+            isOverlayOpen: false,
+
             taskTitleInputed: '',
             taskDescriptionInputed: '',
 
@@ -17,13 +20,18 @@ createApp({
 
     methods: {
         getAPI() {
-            axios.get('server/server.php')
+            axios.get(this.apiURL)
                 .then(callResponse => {
                     this.todoList = callResponse.data;
                     this.hasServerError = false;
                 }).catch(error => {
                     this.hasServerError = true;
                 })
+        },
+
+        highlightTask(index) {
+            this.highlightedTaskIndex = index;
+            this.isOverlayOpen = true;
         },
 
         addNewTask() {

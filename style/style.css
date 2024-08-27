@@ -29,13 +29,25 @@ a {
     color: inherit;
 }
 
-.page-wrapper {
+#app {
     width: 100%;
     height: 100vh;
+}
+
+.page-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: radial-gradient(var(--clr-secondary), var(--clr-primary)), var(--clr-primary);
+}
+
+.page-wrapper.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000080;
 }
 
 .page-wrapper>div {
@@ -48,6 +60,11 @@ a {
     margin: 5vw auto;
 }
 
+.overlay .content {
+    width: 90%;
+    max-width: 750px;
+}
+
 header {
     color: var(--clr-neutral-lt);
     text-align: center;
@@ -58,11 +75,26 @@ h1 {
     font-size: 3rem;
 }
 
-main {
+.window {
     padding: 2rem;
     border-radius: 1rem;
     background-color: var(--clr-neutral-lt);
     color: var(--clr-neutral-dk);
+}
+
+.overlay .window {
+    position: relative;
+}
+
+.close-page {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
 }
 
 .event {
@@ -73,7 +105,7 @@ main {
     margin-bottom: 1rem;
 }
 
-.event.completed {
+.completed {
     text-decoration: line-through;
 }
 
@@ -84,6 +116,15 @@ form>.event {
 .event-name {
     font-size: 1.25em;
     overflow-wrap: anywhere;
+}
+
+.overlay .event-name {
+    font-size: 2.25rem;
+    margin-bottom: .75rem;
+}
+
+.overlay .event-description {
+    font-size: 1.125rem;
 }
 
 .input-area {
@@ -139,4 +180,9 @@ textarea.input-area {
 .event-options button.disabled {
     opacity: .5;
     pointer-events: none;
+}
+
+.overlay .event-options {
+    justify-content: center;
+    margin-top: .75rem;
 }
