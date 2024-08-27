@@ -10,8 +10,10 @@ createApp({
             highlightedTaskIndex: 0,
             isOverlayOpen: false,
 
-            taskTitleInputed: '',
-            taskDescriptionInputed: '',
+            taskInputed: {
+                title: '',
+                description: ''
+            },
 
             hasInputError: false,
             hasServerError: false
@@ -36,21 +38,18 @@ createApp({
 
         addNewTask() {
             if (/[A-Za-zÀ-ÖØ-öø-ÿ0-9]{3,}/i.test(this.taskTitleInputed)) {
-                const data = {
-                    newTask: JSON.stringify({
-                        title: this.taskTitleInputed.replace(/\s+/g, ' ').trim(),
-                        description: this.taskDescriptionInputed.replace(/\s+/g, ' ').trim(),
-                        isCompleted: false
-                    })
-                };
+                for (const key in this.taskInputed) {
+                    this.taskInputed[key] = this.taskInputed[key].replace(/\s+/g, ' ').trim();
+                }
 
-                axios.post(this.apiURL, data, {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                })
+                const data = new FormData();
+                data.append('newTask', JSON.stringify(this.taskInputed));
+
+                axios.post(this.apiURL, data)
                     .then(callResponse => {
                         this.todoList = callResponse.data;
-                        this.taskTitleInputed = '';
-                        this.taskDescriptionInputed = '';
+                        this.taskInputed.title = '';
+                        this.taskInputed.description = '';
                         this.hasServerError = false;
                     }).catch(error => {
                         this.hasServerError = true;
@@ -62,13 +61,14 @@ createApp({
         },
 
         editTask(commandString, indexOfTask) {
-            const data = {
-                [`${commandString}AtIndex`]: indexOfTask
+            if (commandString === 'remove') {
+                this.isOverlayOpen = false
             }
 
-            axios.post(this.apiURL, data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            })
+            const data = new FormData();
+            data.append(`${commandString}AtIndex`, indexOfTask);
+
+            axios.post(this.apiURL, data)
                 .then(callResponse => {
                     this.todoList = callResponse.data;
                     this.hasServerError = false;

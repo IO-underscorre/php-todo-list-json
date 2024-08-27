@@ -40,7 +40,7 @@
                                     </li>
 
                                     <li>
-                                        <button :title="todoList[highlightedTaskIndex].isCompleted ? 'Uncheck task as completed' : 'Check task as completed'" @click="editTask('toggle', index)">
+                                        <button :title="task.isCompleted ? 'Uncheck task as completed' : 'Check task as completed'" @click="editTask('toggle', index)">
                                             <i class="fa-solid fa-xmark" v-if="task.isCompleted"></i>
 
                                             <i class="fa-solid fa-check" v-else></i>
@@ -58,7 +58,7 @@
 
                         <form @submit.prevent="addNewTask()">
                             <div class="event">
-                                <input type="text" placeholder="New task" class="input-area" v-model="taskTitleInputed" required>
+                                <input type="text" placeholder="New task" class="input-area" v-model="taskInputed.title" required>
 
                                 <div class="event-options">
                                     <button type="submit" title="Add new task">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <textarea rows="3" placeholder="Optional description" class="input-area" v-model="taskDescriptionInputed"></textarea>
+                            <textarea rows="3" placeholder="Optional description" class="input-area" v-model="taskInputed.description"></textarea>
                         </form>
                     </main>
                 </div>
